@@ -322,8 +322,7 @@ body {
     transform: scale(.7) rotateX(40deg) rotateY(140deg);
 }
 
-.playlist p,
-h2 {
+.playlist p,h2 {
     padding-top: 5px;
 }
 
@@ -387,7 +386,7 @@ h2 {
     position: fixed;
     bottom: 20px;
     background-color: rgb(30, 215, 96);
-    width: 70.5vw;
+    width: 70vw;
     border-radius: 10px;
     z-index: 0;
     /* width:  -webkit-fill-available; */

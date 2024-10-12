@@ -20,7 +20,7 @@ function secondsToMinuteSeconds(seconds) {
 async function getsongs(folder) {
 
     currentFolder = folder;
-    let a = await fetch(`http://127.0.0.1:5500/${folder}/`);
+    let a = await fetch(`/${folder}/`);
     let response = await a.text();
     // console.log(response);
     let div = document.createElement("div")
@@ -95,7 +95,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function displayAlbums() {
-    let a = await fetch("http://127.0.0.1:5500/songs/");
+    let a = await fetch("/songs/");
     let response = await a.text();
     // console.log(response);
     let div = document.createElement("div")
@@ -118,7 +118,7 @@ async function displayAlbums() {
             // console.log(folder);  
 
             //get the META data of the folder
-            let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`);
+            let a = await fetch(`/songs/${folder}/info.json`);
             let response = await a.json();
             // console.log(response);
 
@@ -141,7 +141,7 @@ async function displayAlbums() {
 
     //     // Check if the href contains 'songs/' and log the full href
     //     if (e.href.includes("/songs/")) {
-    //         console.log(e.href);  // This will log the full href like 'http://127.0.0.1:5500/Javascript/Spotify/songs/adnan'
+    //         console.log(e.href);  // This will log the full href like '/Javascript/Spotify/songs/adnan'
     //     }
     // });
 
