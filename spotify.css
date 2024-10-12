@@ -347,7 +347,7 @@ body {
 .card:hover{
     cursor: pointer;
     background-color: rgb(60, 60, 60);
-    --a: 1;
+    --a: 1 ;
     --b: 1.07;
     /* z-index: 1; */
 }
@@ -375,11 +375,12 @@ body {
     padding: 10px;
     background-color: rgb(30, 215, 96);
     position: absolute;
-    top: 85px;
+    top: 105px;
     right: 15px;
     opacity: var(--a);
     transition: all ease 500ms;
 }
+
 
 
 .playbar {
@@ -408,6 +409,12 @@ body {
 
 .abovebar img {
     cursor: pointer;
+    transition: all ease 300ms;
+}
+
+
+.abovebar img:hover{
+    transform: scale(1.2);
 }
 
 .volume img{
@@ -538,6 +545,7 @@ input[type="range"] {
     .card{
         max-width: 25vw;
     }
+    
     .playbar {
         width: 93vw;
     }
@@ -561,6 +569,7 @@ input[type="range"] {
     .card{
         max-width: 30vw;
     }
+   
     
 }
 
@@ -602,9 +611,9 @@ input[type="range"] {
         max-width: 40vw;
     }
     .card .play{
-        width: 20px;
+        width: 30px;
         padding: 6px;
-        top: 66%;
+        top: 70%;
         right: 5%;
     }
 
@@ -673,7 +682,7 @@ input[type="range"] {
     .card .play{
         width: 45px;
         padding: 15px;
-        top: 245px;
+        top: 230px;
         right: 25px;
     }
     
