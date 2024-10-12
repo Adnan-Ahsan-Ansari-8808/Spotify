@@ -1,0 +1,86 @@
+.gap{
+    gap: 10px;
+}
+
+.flex{
+    display: flex;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.grid{
+    display: grid;
+}
+
+.invert{
+    filter: invert(1);
+}
+
+.bg-grey{
+    background-color: #121212;
+}
+
+.rounded{
+    /* border: 2px solid transparent; */
+    border-radius: 8px;
+}
+
+.m-1{
+    margin: 5px;
+}
+
+.p-1{
+    padding: 10px;
+}
+
+.p-2{
+    padding: 20px;
+}
+
+
+.playlist::-webkit-scrollbar {
+    width: 0px;
+    /* Width of the scrollbar */
+    background-color: #2c2c2c00;
+    /* Dark background for the scrollbar track */
+    border-radius: 0 8px 8px 0;
+}
+
+.playlist::-webkit-scrollbar-thumb {
+    background-color: #62626200;
+    /* Color of the draggable part of the scrollbar */
+    border-radius: 0 8px 8px 0;
+    /* Rounded corners for the scrollbar thumb */
+}
+
+.playlist:hover::-webkit-scrollbar {
+    width: 0px;
+    /* Width of the scrollbar */
+    background-color: #2c2c2c;
+    /* Dark background for the scrollbar track */
+    border-radius: 0 8px 8px 0;
+}
+
+.playlist:hover::-webkit-scrollbar-thumb {
+    background-color: #626262;
+    /* Color of the draggable part of the scrollbar */
+    border-radius: 0 8px 8px 0;
+    /* Rounded corners for the scrollbar thumb */
+}
+
+
+
+
+
+
+
+
+
+
+

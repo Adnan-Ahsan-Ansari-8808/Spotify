@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 512 512" style="color:currentColor" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
+    <!-- Outer rectangle with rounded corners -->
+    <rect width="512" height="512" x="0" y="0" rx="30" fill="transparent" stroke="transparent" stroke-width="0" stroke-opacity="100%" paint-order="stroke"></rect>
+
+    <!-- Inner content, originally within a nested SVG -->
+    <g fill="currentColor" transform="scale(32)">
+        <!-- The scaling factor is derived from 512 / 16 = 32 -->
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5"/>
+    </g>
+</svg>
