@@ -253,6 +253,22 @@ next.addEventListener("click", () => {
     }
 })
 
+//Adding Event listner for Pause and Play using "SPACE" button
+document.addEventListener("keydown", (event)=>{
+    // Check if the pressed key is the spacebar (key code 32)
+    if( event.code === "Space" ){
+        event.preventDefault();
+    }
+    if (currentSong.paused) {
+        currentSong.play();
+        play.src = "image/pause-circle-filled.png"
+    }
+    else {
+        currentSong.pause()
+        play.src = " image/play-circle-filled.png"
+    }
+}) 
+
 // add event to volume
 document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
     console.log("setting volume to ", e.target.value, "/ 100");
