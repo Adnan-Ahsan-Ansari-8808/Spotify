@@ -29,14 +29,14 @@ async function getsongs(folder) {
     console.log(as);
 
     songs = [];         //creating empty array for contaings the hrefs on songs
-    
+
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
         if (element.href.endsWith(".mp3") || element.href.endsWith(".m4a")) {
             songs.push(element.href.split(`/${folder}/`)[1])
         }
     }
-    
+
     //show all songs playlist
     let songUL = document.querySelector(".songlist").getElementsByTagName("ul")[0];
     songUL.innerHTML = ""
@@ -58,10 +58,10 @@ async function getsongs(folder) {
     }
 
     // console.log(songs.length);
-    if( songs.length <=5 ){
+    if (songs.length <= 5) {
         document.querySelector(".songlist").style.maxHeight = 100 + "%"
     }
-    else{
+    else {
         document.querySelector(".songlist").style.maxHeight = 83 + "%"
     }
     // Attach an event listener to each song
@@ -187,82 +187,102 @@ async function main() {
         /${secondsToMinuteSeconds(currentSong.duration)}`
 
         document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 99 + "%"
-    })
 
-    document.querySelector(".seekbar").addEventListener("click", e => {
-        let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100
-        console.log(percent);
+        //Auto next Song After Completion
+        if (currentSong.currentTime / currentSong.duration >= .99) {
+        console.log(document.querySelector(".circle").style.left);
 
-        document.querySelector(".circle").style.left = percent + "%";
-        currentSong.currentTime = (currentSong.duration) * (percent / 100)
-
-        // console.log(e.target.getBoundingClientRect().width,e.offsetX);
-
-    })
-
-    //add an event listner for hamburger
-    document.querySelector("#hamburger").addEventListener("click", () => {
-        document.querySelector(".left").style.left = "0"
-    })
-
-    //add an event listner for hamburger close button
-    document.querySelector("#close").addEventListener("click", () => {
-        document.querySelector(".left").style.left = "-110%"
-    })
-
-
-    //add an event listner for pervious
-    previous.addEventListener("click", () => {
-        // console.log('Previous Clicked');
-        console.log(currentSong.src.split("/").slice(-1)[0]);
         let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
-        if (index >= 0) {
-            playMusic(songs[index - 1])
-        }
-    })
 
-
-    //add an event listner for pervious
-    next.addEventListener("click", () => {
-        // console.log('Next Clicked');
-        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
-        console.log(index);
-
-        if (index <= songs.length) {
+        if (index < songs.length - 1) {
             playMusic(songs[index + 1])
         }
-    })
-
-    // add event to volume
-    document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
-        console.log("setting volume to ", e.target.value, "/ 100");
-        currentSong.volume = parseInt(e.target.value) / 100;
-
-        //changing volume icon when muted
-        if (document.querySelector(".range").getElementsByTagName("input")[0].value == 0) {
-            document.querySelector(".volume>img").src = document.querySelector(".volume>img").src.replace("volume.svg", "mute.svg")
+        else{
+            playMusic(songs[0])
         }
-        //volume icon changes from mute to above '0' 
-        else if (document.querySelector(".range").getElementsByTagName("input")[0].value > 0) {
-            document.querySelector(".volume>img").src = document.querySelector(".volume>img").src.replace("mute.svg", "volume.svg")
-        }
+    }
+})
 
-    })
+document.querySelector(".seekbar").addEventListener("click", e => {
+    let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100
+    console.log(percent);
 
-    //add event listener to mute volume
-    document.querySelector(".volume>img").addEventListener("click", e => {
-        // console.log(e.target.src)
-        if (e.target.src.includes("volume.svg")) {
-            e.target.src = e.target.src.replace("volume.svg", "mute.svg")
-            document.querySelector(".range").getElementsByTagName("input")[0].value = 0;
-            currentSong.volume = 0;
-        }
-        else {
-            e.target.src = e.target.src.replace("mute.svg", "volume.svg")
-            document.querySelector(".range").getElementsByTagName("input")[0].value = 0.10;
-            currentSong.volume = 0.10;
-        }
-    })
+    document.querySelector(".circle").style.left = percent + "%";
+    currentSong.currentTime = (currentSong.duration) * (percent / 100)
+
+    // console.log(e.target.getBoundingClientRect().width,e.offsetX);
+
+})
+
+//add an event listner for hamburger
+document.querySelector("#hamburger").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "0"
+})
+
+//add an event listner for hamburger close button
+document.querySelector("#close").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "-110%"
+})
+
+
+//add an event listner for pervious
+previous.addEventListener("click", () => {
+    // console.log('Previous Clicked');
+    console.log(currentSong.src.split("/").slice(-1)[0]);
+    let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+    if (index > 0 + 1) {
+        playMusic(songs[index - 1])
+    }
+    else {
+        playMusic(songs[songs.length - 1])
+    }
+})
+
+
+//add an event listner for next
+next.addEventListener("click", () => {
+    // console.log('Next Clicked');
+    let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+    console.log(index);
+
+    if (index < songs.length - 1) {
+        playMusic(songs[index + 1])
+    }
+    else {
+        playMusic(songs[0])
+    }
+})
+
+// add event to volume
+document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
+    console.log("setting volume to ", e.target.value, "/ 100");
+    currentSong.volume = parseInt(e.target.value) / 100;
+
+    //changing volume icon when muted
+    if (document.querySelector(".range").getElementsByTagName("input")[0].value == 0) {
+        document.querySelector(".volume>img").src = document.querySelector(".volume>img").src.replace("volume.svg", "mute.svg")
+    }
+    //volume icon changes from mute to above '0' 
+    else if (document.querySelector(".range").getElementsByTagName("input")[0].value > 0) {
+        document.querySelector(".volume>img").src = document.querySelector(".volume>img").src.replace("mute.svg", "volume.svg")
+    }
+
+})
+
+//add event listener to mute volume
+document.querySelector(".volume>img").addEventListener("click", e => {
+    // console.log(e.target.src)
+    if (e.target.src.includes("volume.svg")) {
+        e.target.src = e.target.src.replace("volume.svg", "mute.svg")
+        document.querySelector(".range").getElementsByTagName("input")[0].value = 0;
+        currentSong.volume = 0;
+    }
+    else {
+        e.target.src = e.target.src.replace("mute.svg", "volume.svg")
+        document.querySelector(".range").getElementsByTagName("input")[0].value = 0.10;
+        currentSong.volume = 0.10;
+    }
+})
 
 }
 main()
